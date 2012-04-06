@@ -24,7 +24,6 @@ import info.guardianproject.otr.app.im.app.adapter.ChatSessionListenerAdapter;
 import info.guardianproject.otr.app.im.engine.Contact;
 import info.guardianproject.otr.app.im.engine.ImConnection;
 import info.guardianproject.otr.app.im.engine.ImErrorInfo;
-import info.guardianproject.otr.app.im.plugin.BrandingResourceIDs;
 import info.guardianproject.otr.app.im.provider.Imps;
 import info.guardianproject.otr.app.im.provider.ImpsAddressUtils;
 import info.guardianproject.otr.app.im.service.ImServiceConstants;
@@ -50,7 +49,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
@@ -86,9 +84,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ProgressBar;
 
 public class ChatView extends LinearLayout {	
     // This projection and index are set for the query of active chats
@@ -131,6 +129,7 @@ public class ChatView extends LinearLayout {
 
     private ImageView   mStatusIcon;
     private TextView    mTitle;
+    private ProgressBar mProgressBar;
     /*package*/ListView    mHistory;
     EditText    mComposeMessage;
     private Button      mSendButton;
@@ -327,6 +326,7 @@ public class ChatView extends LinearLayout {
     protected void onFinishInflate() {
         mStatusIcon     = (ImageView) findViewById(R.id.statusIcon);
         mTitle          = (TextView) findViewById(R.id.title);
+        mProgressBar    = (ProgressBar) findViewById(R.id.title_progress_bar);
         mHistory        = (ListView) findViewById(R.id.history);
         mComposeMessage       = (EditText) findViewById(R.id.composeMessage);
         mSendButton     = (Button)findViewById(R.id.btnSend);
@@ -510,6 +510,20 @@ public class ChatView extends LinearLayout {
         }
 
         updateWarningView();
+    }
+
+    /**
+     * Display progress bar spinner in title bar.
+     */
+    public void showProgressbar() {
+    	mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Display progress bar spinner in title bar.
+     */
+    public void dismissProgressbar() {
+    	mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     private void updateContactInfo() {

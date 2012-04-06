@@ -282,6 +282,7 @@ public class NewChatActivity extends Activity {
     
     private void switchOtrState ()
     {
+    	mChatView.showProgressbar();
     	//TODO OTRCHAT switch state on/off
     	
     	IOtrChatSession otrChatSession = mChatView.getOtrChatSession();
@@ -346,6 +347,7 @@ public class NewChatActivity extends Activity {
             public void handleMessage(Message msg) {
             	mChatView.updateWarningView();
             	updateOtrMenuState();
+            	mChatView.dismissProgressbar();
             }
       	
     		

@@ -45,6 +45,16 @@
             android:fadingEdge="horizontal"
             android:scrollHorizontally="true"
             android:layout_marginRight="20dip" />
+
+        <ProgressBar
+            android:id="@+id/title_progress_bar"
+            style="?android:attr/progressBarStyleSmallTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:indeterminateOnly="true"
+            android:visibility="invisible" />
+
     </LinearLayout>
     
     
